@@ -40,14 +40,12 @@ return wordForScrubble;
 
 //-------------------------
 
-let numScore;
+
 
 function simpleScore(word) {
   word = word.toUpperCase();
 
-  /*for (let i = 0; i < word.length; i++) {
-    numScore = word.length;
-  }*/
+
   return word.length;
 
 }
@@ -173,17 +171,6 @@ function runProgram() {
  let word1 = initialPrompt();
   let x = scorerPrompt();
   console.log(`Score for '${word1}': ${x.scoringFunction(word1)}`);
-  
-  /*if (x.scoringFunction==simpleScore){
-          console.log(`Score for '${word1}': ${simpleScore(word1)}`);
- }
-else if (x.scoringFunction==vowelBonusScore){
-          console.log(`Score for '${word1}': ${vowelBonusScore(word1)}`);
- }
-else if (x.scoringFunction==scrabbleScore){
-          console.log(`Score for '${word1}': ${scrabbleScore(word1)}`);
- }
-}}*/
 
 }
 // Don't write any code below this line //
