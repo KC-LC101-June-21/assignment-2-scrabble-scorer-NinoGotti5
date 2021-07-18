@@ -1,5 +1,6 @@
 const input = require("readline-sync");
 let word = '';
+
 const oldPointStructure = {
   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
   2: ['D', 'G'],
@@ -27,44 +28,17 @@ function oldScrabbleScorer(word) {
 }
 
 
-function checkInput(word6) {
-  var letter = /[a-zA-Z]+$/;
-  if (word6.match(letter)) {
-    return true;
-  }
-  else {
-    console.log("Invalid input");
-
-  }
-}
-
-function checkInputScore(score) {
-  var number = /[0-2]+$/;
-  if (score.match(number)) {
-    return true;
-  }
-  else {
-    console.log("Invalid input");
-
-  }
-}
-
-
-// your job is to finish writing these functions and variables that we've named //
-// don't change the names or your program won't work as expected. //
-
 //-------------------------------
 
 function initialPrompt() {
   console.log("Let's play some Scrabble!");
   console.log("\n");
   let wordForScrubble = input.question("Enter a word to score: ");
-  while (!checkInput(wordForScrubble)==true){
- wordForScrubble = input.question("Enter a word to score: ");
-  }
+
 return wordForScrubble;
 }
-//----------------
+
+//-------------------------
 
 let numScore;
 
@@ -103,7 +77,7 @@ function vowelBonusScore(word) {
 }
 
 
-let newPointStructure = transform(oldPointStructure);
+const newPointStructure = transform(oldPointStructure);
 
 //=================
 
@@ -132,14 +106,11 @@ function scorerPrompt() {
   
   console.log("Which scoring algorithm would you like to use?")
 
-  console.log(`${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}`);
-  console.log(`${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}`);
-  console.log(`${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}`);
+  console.log(`0 -${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}`);
+  console.log(`1 -${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}`);
+  console.log(`2 -${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}`);
 
   let option = input.question("Enter 0, 1, or 2: ");
-   while (!checkInputScore(option)==true){
- option = input.question("Enter 0, 1, or 2: ");
-  }
  
  
 return scoringAlgorithms[option];
@@ -189,17 +160,12 @@ function transform(oldPointStructure) {
 //console.log(newPointStructure);
 
 function scrabbleScore(word) {
-
-
   let points = 0;
-  let array = [];
-  newPointStructure[" "] = 0;
-  for (let i = 0; i < word.length; i++) {
-
-    array.push(word[i]);
-    points = points + newPointStructure[array[i]] + newPointStructure[" "];
-
+  
+  for (let letter of word) {
+    points += newPointStructure[letter.toLowerCase()];
   }
+
   return points;
 }
 
@@ -216,7 +182,7 @@ else if (x.scoringFunction==vowelBonusScore){
  }
 else if (x.scoringFunction==scrabbleScore){
           console.log(`Score for '${word1}': ${scrabbleScore(word1)}`);
- 
+ }
 }}*/
 
 }
